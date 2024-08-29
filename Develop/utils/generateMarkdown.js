@@ -63,7 +63,7 @@ ${responses.contributionGuide}
 ${responses.testGuide}
 
 ## Questions
-- GitHub: ${responses.gitUsername}(${responses.gitLink})
+- GitHub: [${responses.gitUsername}](${responses.gitLink})
 - Email: ${responses.email}
 
 ${renderLicenseSection(responses)}`;
