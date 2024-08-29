@@ -20,15 +20,14 @@ const questions = [
 
 // TODO: Create a function to write README file
 
-const licenseMap = {
-    "MIT": "MIT",
-    "Creative Commons Zero": "CC0",
-    "Apache 2.0": "Apache",
-    "Mozilla Public License 2.0": "MPL",
-    "No License": "",
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (error) =>
+    error ? console.log(error) : console.log("README generated successfully!"))
 }
 
-inquirer
+// TODO: Create a function to initialize app
+function init() {
+    inquirer
     .prompt([
         {
             name: "fullName",
@@ -87,15 +86,11 @@ inquirer
             choices: ["MIT", "Creative Commons Zero", "Apache 2.0", "Mozilla Public License 2.0", "No License"]
         },
     ]) .then ((responses) => {
-        const licenseChoice = licenseMap[responses.license];
+        const licenseChoice = responses.license !== "No License" ? responses.license : "";
+        const compiledMarkdown = generateMarkdown(responses, licenseChoice);
+        writeToFile("YourREADME.md", compiledMarkdown);
     })
-
-function writeToFile(fileName, data) {
-    fs.writeFile("README.md", )
 }
-
-// TODO: Create a function to initialize app
-function init() {}
 
 // Function call to initialize app
 init();
